@@ -20,7 +20,7 @@ class UserDAOTest {
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/forumdb");
 		dataSource.setUsername("root");
-		dataSource.setPassword("Tigerhu123");
+		dataSource.setPassword("password");
 
 		dao = new UserDAOImpl(dataSource);
 	}
