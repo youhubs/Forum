@@ -9,7 +9,7 @@
     <title>Welcome to ForumStack !</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+	<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
   </head>
   <body>
     <nav class="navbar forum" role="navigation" aria-label="main navigation">
@@ -86,7 +86,7 @@
                     <article class="media">
                         <div class="media-left">
                             <figure class="image avatar is-64x64">
-                                <img src="assets/img/1.png" alt="Image" class="is-rounded">
+                                <img src="<c:url value="/resources/img/1.png" />" alt="image" class="is-rounded">
                             </figure>
                         </div>
                         <div class="media-content">
@@ -355,6 +355,6 @@
             </div>
         </footer>
     </div>
-    <script src="assets/js/script.js"></script>
+	<script src="<c:url value="/resources/js/script.js" />"></script>
 </body>
 </html>

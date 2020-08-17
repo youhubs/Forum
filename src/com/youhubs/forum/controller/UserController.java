@@ -21,11 +21,6 @@ public class UserController {
 	@Autowired
 	private UserDAO userDAO;
 
-	@RequestMapping(value = "/")
-	public String home() {
-		return "index";
-	}
-
 	@RequestMapping(value = "/users")
 	public ModelAndView listUser(ModelAndView mav) {
 		List<User> users = userDAO.listUser();
