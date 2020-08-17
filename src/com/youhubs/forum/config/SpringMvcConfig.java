@@ -11,6 +11,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.youhubs.forum.dao.PostDAO;
+import com.youhubs.forum.dao.PostDAOImpl;
 import com.youhubs.forum.dao.UserDAO;
 import com.youhubs.forum.dao.UserDAOImpl;
 
@@ -42,5 +44,10 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 	@Bean
 	public UserDAO getUserDAO() {
 		return new UserDAOImpl(getDataSource());
+	}
+
+	@Bean
+	public PostDAO getPostDAO() {
+		return new PostDAOImpl(getDataSource());
 	}
 }

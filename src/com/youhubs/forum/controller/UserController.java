@@ -21,6 +21,11 @@ public class UserController {
 	@Autowired
 	private UserDAO userDAO;
 
+	@RequestMapping(value = "/")
+	public String home() {
+		return "index";
+	}
+
 	@RequestMapping(value = "/users")
 	public ModelAndView listUser(ModelAndView mav) {
 		List<User> users = userDAO.listUser();
@@ -64,7 +69,7 @@ public class UserController {
 	@RequestMapping(value = "/delete-user", method = RequestMethod.GET)
 	public ModelAndView deleteUser(@RequestParam Integer id) {
 		userDAO.deleteUser(id);
-		
+
 		return new ModelAndView("redirect:/users");
 	}
 }
