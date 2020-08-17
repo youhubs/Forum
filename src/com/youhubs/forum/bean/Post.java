@@ -1,14 +1,11 @@
 package com.youhubs.forum.bean;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 
 public class Post {
 	private int id;
 	private int pid; // parent id
 	private int rootId;
-	private int level;
 	private String title;
 	private String content;
 	private boolean isLeaf;
@@ -17,16 +14,15 @@ public class Post {
 	public Post() {
 	}
 
-	public Post(int id, int pid, int rootId, int level, String title, String content, boolean isLeaf, Date pdate) {
-		this(pid, rootId, level, title, content, isLeaf);
+	public Post(int id, int pid, int rootId, String title, String content, boolean isLeaf, Date pdate) {
+		this(pid, rootId, title, content, isLeaf);
 		this.id = id;
 		this.pdate = pdate;
 	}
 
-	public Post(int pid, int rootId, int level, String title, String content, boolean isLeaf) {
+	public Post(int pid, int rootId, String title, String content, boolean isLeaf) {
 		this.pid = pid;
 		this.rootId = rootId;
-		this.level = level;
 		this.title = title;
 		this.content = content;
 		this.isLeaf = isLeaf;
@@ -54,14 +50,6 @@ public class Post {
 
 	public void setRootId(int rootId) {
 		this.rootId = rootId;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
 	}
 
 	public String getTitle() {
@@ -94,20 +82,5 @@ public class Post {
 
 	public void setPdate(Date pdate) {
 		this.pdate = pdate;
-	}
-
-	public void initFromRs(ResultSet rs) {
-		try {
-			setId(rs.getInt("id"));
-			setPid(rs.getInt("pid"));
-			setRootId(rs.getInt("rootid"));
-			setTitle(rs.getString("title"));
-			setLeaf(rs.getInt("isleaf") == 0);
-			setPdate(rs.getTimestamp("pdate"));
-			setContent(rs.getString("cont"));
-			setLevel(0);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 }

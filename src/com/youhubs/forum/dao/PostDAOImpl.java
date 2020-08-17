@@ -23,21 +23,20 @@ public class PostDAOImpl implements PostDAO {
 
 	@Override
 	public int addPost(Post p) {
-		String sql = "INSERT INTO Post (pid, rootid, level, title, content, isleaf, pdate) VALUES (?, ?, ?, ?, ?, ?, ?)";
-		return jdbcTemplate.update(sql, p.getPid(), p.getRootId(), p.getLevel(), p.getTitle(), p.getContent(),
-				p.isLeaf(), p.getPdate());
+		String sql = "INSERT INTO Post (pid, rootid, title, content, isleaf, pdate) VALUES (?, ?, ?, ?, ?, ?)";
+		return jdbcTemplate.update(sql, p.getPid(), p.getRootId(), p.getTitle(), p.getContent(), p.isLeaf(),
+				p.getPdate());
 	}
 
 	@Override
 	public int updatePost(Post p) {
-		String sql = "UPDATE Post SET pid=?, rootid=?, level=?, title=?, content=?, isleaf=? WHERE postid=?";
-		return jdbcTemplate.update(sql, p.getPid(), p.getRootId(), p.getLevel(), p.getTitle(), p.getContent(),
-				p.isLeaf(), p.getId());
+		String sql = "UPDATE Post SET pid=?, rootid=?, title=?, content=?, isleaf=? WHERE id=?";
+		return jdbcTemplate.update(sql, p.getPid(), p.getRootId(), p.getTitle(), p.getContent(), p.isLeaf(), p.getId());
 	}
 
 	@Override
 	public Post getPost(Integer id) {
-		String sql = "SELECT * FROM Post WHERE postid=" + id;
+		String sql = "SELECT * FROM Post WHERE id=" + id;
 
 		ResultSetExtractor<Post> extractor = new ResultSetExtractor<Post>() {
 			@Override
@@ -45,12 +44,11 @@ public class PostDAOImpl implements PostDAO {
 				if (rs.next()) {
 					Integer pid = rs.getInt("pid");
 					Integer rootid = rs.getInt("rootid");
-					Integer level = rs.getInt("level");
 					String title = rs.getString("title");
 					String content = rs.getString("content");
 					Boolean isleaf = rs.getBoolean("isleaf");
 					Date pdate = rs.getDate("pdate");
-					return new Post(id, pid, rootid, level, title, content, isleaf, pdate);
+					return new Post(id, pid, rootid, title, content, isleaf, pdate);
 				}
 				return null;
 			}
@@ -61,7 +59,7 @@ public class PostDAOImpl implements PostDAO {
 
 	@Override
 	public int deletePost(Integer id) {
-		String sql = "DELETE FROM Post WHERE postid=" + id;
+		String sql = "DELETE FROM Post WHERE id=" + id;
 		return jdbcTemplate.update(sql);
 	}
 
@@ -72,15 +70,14 @@ public class PostDAOImpl implements PostDAO {
 		RowMapper<Post> rowMapper = new RowMapper<Post>() {
 			@Override
 			public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Integer id = rs.getInt("postid");
+				Integer id = rs.getInt("id");
 				Integer pid = rs.getInt("pid");
 				Integer rootid = rs.getInt("rootid");
-				Integer level = rs.getInt("level");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
 				Boolean isleaf = rs.getBoolean("isleaf");
 				Date pdate = rs.getDate("pdate");
-				return new Post(id, pid, rootid, level, title, content, isleaf, pdate);
+				return new Post(id, pid, rootid, title, content, isleaf, pdate);
 			}
 		};
 

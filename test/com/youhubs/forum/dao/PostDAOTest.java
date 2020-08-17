@@ -29,14 +29,14 @@ class PostDAOTest {
 
 	@Test
 	void testAddPost() {
-		Post post = new Post(2, 0, 0, 0, "first post", "This is a tesing post!", false, new Date());
+		Post post = new Post(2, 0, 0, "first post", "This is a tesing post!", false, new Date());
 		int result = dao.addPost(post);
 		assertTrue(result > 0);
 	}
 
 	@Test
 	void testUpdatePost() {
-		Post post = new Post(2, 0, 0, 0, "second post", "This is another tesing post!", false, new Date());
+		Post post = new Post(2, 0, 0, "second post", "This is another tesing post!", false, new Date());
 		Integer result = dao.updatePost(post);
 
 		assertTrue(result > 0);
