@@ -14,4 +14,7 @@ public interface PostDAO {
 	public int deletePost(Integer id);
 
 	public List<Post> listPost();
+
+	public List<Post> listRootPost();
+
 }

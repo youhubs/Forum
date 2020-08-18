@@ -12,42 +12,7 @@
 	<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
   </head>
   <body>
-    <nav class="navbar forum" role="navigation" aria-label="main navigation">
-        <div class="container">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="">
-                    <h5 class="title is-5">ForumStack</h5>
-                </a>
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-            <div id="navbarBasicExample" class="navbar-menu">
-                <div class="navbar-start">
-                    <a href="#" class="navbar-item">
-                      Home
-                    </a>
-                    <a href="#" class="navbar-item">
-                      About
-                    </a>
-                </div>
-                <div class="navbar-end">
-                    <div class="navbar-item">
-                        <div class="buttons">
-                            <a class="button is-primary">
-                                <strong>Sign up</strong>
-                            </a>
-                            <a class="button is-light">
-                          Log in
-                        </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+<%@ include file="header.jsp" %>
     <section class="hero is-primary">
         <div class="hero-body">
             <div class="container hero-forum has-text-centered">
@@ -124,26 +89,23 @@
                             </div>
                         </div>
                     </article>
+                    <c:forEach items="${posts}" var="post" varStatus="status">
                     <article class="media">
                         <div class="media-left">
                             <figure class="image avatar is-64x64">
-                                <img src="/assets/img/4.png" alt="Image" class=" is-rounded">
+                                <img src="<c:url value="/resources/img/2.png" />" alt="image" class="is-rounded">
                             </figure>
                         </div>
                         <div class="media-content">
                             <div class="content list-forum">
                                 <div class="is-pulled-right has-text-centered ">
                                     <a href="#" class="love active">
-                                        <span>
-                                    <i class="mdi mdi-heart"></i>   
-                                  </span>
+                                        <span><i class="mdi mdi-heart"></i></span>
                                     </a>
                                     <span>12</span>
                                 </div>
                                 <p class="text-content">
-                                    <a href="#"> 
-                               Why use JWT for Web SPA ?
-                              </a>
+                                    <a href="#">${post.title}</a>
                                 </p>
                                 <p class="tags-content">
                                     <a class="tag is-rounded is-primary">SPA</a>
@@ -162,157 +124,7 @@
                                 </p>
                             </div>
                         </div>
-                    </article>
-                    <article class="media">
-                        <div class="media-left">
-                            <figure class="image avatar is-64x64">
-                                <img src="assets/img/2.png" alt="Image" class=" is-rounded">
-                            </figure>
-                        </div>
-                        <div class="media-content">
-                            <div class="content list-forum">
-                                <div class="is-pulled-right has-text-centered ">
-                                    <a href="#" class="love">
-                                        <span>
-                                    <i class="mdi mdi-heart-outline"></i>   
-                                  </span>
-                                    </a>
-                                    <span>30</span>
-                                </div>
-                                <p class="text-content">
-                                    <a href="#">How to make great application with nuxtjs</a>
-                                </p>
-                                <p class="tags-content">
-                                    <a class="tag is-rounded is-primary">NuxtJS</a>
-                                    <a class="tag is-rounded is-success">VueJS</a>
-                                    <a class="tag is-rounded is-warning">JavaScript</a>
-                                </p>
-                                <p class="info-content">
-                                    <a>
-                                        <i class="mdi mdi-eye-outline"></i>
-                                        <small>100k</small>
-                                    </a>
-                                    <a>
-                                        <i class="mdi mdi-comment-text-multiple-outline"></i>
-                                        <small>10</small>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <div class="media-left">
-                            <figure class="image avatar is-64x64">
-                                <img src="assets/img/3.png" alt="Image" class="is-rounded">
-                            </figure>
-                        </div>
-                        <div class="media-content">
-                            <div class="content list-forum">
-                                <div class="is-pulled-right has-text-centered ">
-                                    <a href="#" class="love">
-                                        <span>
-                                    <i class="mdi mdi-heart-outline"></i>   
-                                  </span>
-                                    </a>
-                                    <span>100</span>
-                                </div>
-                                <p class="text-content">
-                                    <a href="#">How to make a file in PHP using fopen ?</a>
-                                </p>
-                                <p class="tags-content">
-                                    <a class="tag is-rounded is-info">PHP</a>
-                                    <a class="tag is-rounded is-success">BackEnd</a>
-                                    <a class="tag is-rounded is-warning">Help</a>
-                                </p>
-                                <p class="info-content">
-                                    <a>
-                                        <i class="mdi mdi-eye-outline"></i>
-                                        <small>2k</small>
-                                    </a>
-                                    <a>
-                                        <i class="mdi mdi-comment-text-multiple-outline"></i>
-                                        <small>20</small>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <div class="media-left">
-                            <figure class="image avatar is-64x64">
-                                <img src="assets/img/4.png" alt="Image" class=" is-rounded">
-                            </figure>
-                        </div>
-                        <div class="media-content">
-                            <div class="content list-forum">
-                                <div class="is-pulled-right has-text-centered ">
-                                    <a href="#" class="love active">
-                                        <span>
-                                    <i class="mdi mdi-heart"></i>   
-                                  </span>
-                                    </a>
-                                    <span>12</span>
-                                </div>
-                                <p class="text-content">
-                                    <a href="#"> 
-                               Why use JWT for Web SPA ?
-                              </a>
-                                </p>
-                                <p class="tags-content">
-                                    <a class="tag is-rounded is-primary">SPA</a>
-                                    <a class="tag is-rounded is-grey">JWT</a>
-                                    <a class="tag is-rounded is-link">FrontEnd</a>
-                                </p>
-                                <p class="info-content">
-                                    <a>
-                                        <i class="mdi mdi-eye-outline"></i>
-                                        <small>30k</small>
-                                    </a>
-                                    <a>
-                                        <i class="mdi mdi-comment-text-multiple-outline"></i>
-                                        <small>12</small>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <div class="media-left">
-                            <figure class="image avatar is-64x64">
-                                <img src="assets/img/2.png" alt="Image" class=" is-rounded">
-                            </figure>
-                        </div>
-                        <div class="media-content">
-                            <div class="content list-forum">
-                                <div class="is-pulled-right has-text-centered ">
-                                    <a href="#" class="love">
-                                        <span>
-                                    <i class="mdi mdi-heart-outline"></i>   
-                                  </span>
-                                    </a>
-                                    <span>30</span>
-                                </div>
-                                <p class="text-content">
-                                    <a href="#">How to make great application with nuxtjs</a>
-                                </p>
-                                <p class="tags-content">
-                                    <a class="tag is-rounded is-primary">NuxtJS</a>
-                                    <a class="tag is-rounded is-success">VueJS</a>
-                                    <a class="tag is-rounded is-warning">JavaScript</a>
-                                </p>
-                                <p class="info-content">
-                                    <a>
-                                        <i class="mdi mdi-eye-outline"></i>
-                                        <small>100k</small>
-                                    </a>
-                                    <a>
-                                        <i class="mdi mdi-comment-text-multiple-outline"></i>
-                                        <small>10</small>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                    </article>
+                    </article></c:forEach>
                 </div>
                 <div class="box">
                     <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
@@ -347,13 +159,7 @@
                 </div>
             </div>
         </div>
-        <footer class="footer">
-            <div class="content has-text-centered">
-                <p>
-                    Copyright © 2018 - Design By <a target="_blank" href="https://nim4n136.github.io">NIM4N</a> FROM <b> <a  target="_blank"  href="https://iam-root.tech">IAMROOT TECH</a> </b>
-                </p>
-            </div>
-        </footer>
+<%@ include file="footer.jsp" %>
     </div>
 	<script src="<c:url value="/resources/js/script.js" />"></script>
 </body>

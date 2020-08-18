@@ -83,4 +83,25 @@ public class PostDAOImpl implements PostDAO {
 
 		return jdbcTemplate.query(sql, rowMapper);
 	}
+
+	@Override
+	public List<Post> listRootPost() {
+		String sql = "SELECT * FROM Post WHERE pid=0";
+
+		RowMapper<Post> rowMapper = new RowMapper<Post>() {
+			@Override
+			public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Integer id = rs.getInt("id");
+				Integer pid = rs.getInt("pid");
+				Integer rootid = rs.getInt("rootid");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				Boolean isleaf = rs.getBoolean("isleaf");
+				Date pdate = rs.getDate("pdate");
+				return new Post(id, pid, rootid, title, content, isleaf, pdate);
+			}
+		};
+
+		return jdbcTemplate.query(sql, rowMapper);
+	}
 }

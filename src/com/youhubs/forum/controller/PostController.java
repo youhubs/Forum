@@ -18,7 +18,7 @@ public class PostController {
 
 	@RequestMapping(value = "/")
 	public ModelAndView listPost(ModelAndView mav) {
-		List<Post> posts = postDAO.listPost();
+		List<Post> posts = postDAO.listRootPost();
 		mav.addObject("posts", posts);
 		mav.setViewName("index");
 
