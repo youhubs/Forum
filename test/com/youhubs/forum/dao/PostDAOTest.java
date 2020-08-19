@@ -45,7 +45,7 @@ class PostDAOTest {
 	@Test
 	void testGetPost() {
 		Integer id = 1;
-		Post post = dao.getPost(id);
+		Post post = dao.getPostById(id);
 
 		assertNotNull(post);
 	}
@@ -53,7 +53,7 @@ class PostDAOTest {
 	@Test
 	void testDeletePost() {
 		Integer id = 3;
-		int result = dao.deletePost(id);
+		int result = dao.deletePostById(id);
 
 		assertTrue(result > 0);
 	}

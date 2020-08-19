@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.youhubs.forum.bean.PageIndex;
 import com.youhubs.forum.bean.Post;
 
 public class PostDAOImpl implements PostDAO {
@@ -35,7 +36,7 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public Post getPost(Integer id) {
+	public Post getPostById(Integer id) {
 		String sql = "SELECT * FROM Post WHERE id=" + id;
 
 		ResultSetExtractor<Post> extractor = new ResultSetExtractor<Post>() {
@@ -58,7 +59,7 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public int deletePost(Integer id) {
+	public int deletePostById(Integer id) {
 		String sql = "DELETE FROM Post WHERE id=" + id;
 		return jdbcTemplate.update(sql);
 	}
@@ -103,5 +104,42 @@ public class PostDAOImpl implements PostDAO {
 		};
 
 		return jdbcTemplate.query(sql, rowMapper);
+	}
+
+	@Override
+	public PageIndex<Post> listPostByPage(int curPage) {
+		int limit = 4;
+		int offset = (curPage - 1) * limit;
+		int allCount = this.listRootPost().size();
+		int allPage = 0;
+		if (allCount <= limit) {
+			allPage = 1;
+		} else if (allCount / limit == 0) {
+			allPage = allCount / limit;
+		} else {
+			allPage = allCount / limit + 1;
+		}
+
+		String sql = "SELECT * FROM Post p WHERE p.pid=0 ORDER BY p.pdate DESC LIMIT " + offset + ", " + limit;
+		RowMapper<Post> rowMapper = new RowMapper<Post>() {
+			@Override
+			public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Integer id = rs.getInt("id");
+				Integer pid = rs.getInt("pid");
+				Integer rootid = rs.getInt("rootid");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				Boolean isleaf = rs.getBoolean("isleaf");
+				Date pdate = rs.getDate("pdate");
+				return new Post(id, pid, rootid, title, content, isleaf, pdate);
+			}
+		};
+
+		List<Post> posts = jdbcTemplate.query(sql, rowMapper);
+
+		PageIndex<Post> pageIndex = new PageIndex<>(allPage, curPage);
+		pageIndex.setList(posts);
+
+		return pageIndex;
 	}
 }
